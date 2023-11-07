@@ -1,5 +1,5 @@
 CC=gcc
-DEPENDENCIES=memory.c chunk.c debug.c value.c
+DEPENDENCIES=memory.c chunk.c debug.c value.c vm.c
 
 all: dependencies
 	$(CC) -o main main.c *.o
