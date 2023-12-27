@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include "chunk.h"
 #include "debug.h"
 #include "value.h"
 
@@ -41,8 +42,17 @@ int disassembleInstruction(Chunk *chunk, int offset) {
       return simpleInstruction("OP_TRUE", offset);
     case OP_FALSE:
       return simpleInstruction("OP_FALSE", offset);
+    case OP_POP:
+      return simpleInstruction("OP_POP", offset);
+    case OP_SET_GLOBAL:
+      return constantInstruction("OP_SET_GLOBAL", chunk, offset);
     case OP_EQUAL:
       return simpleInstruction("OP_EQUAL", offset);
+    case OP_GET_GLOBAL:
+      return simpleInstruction("OP_GET_GLOBAL", offset);
+    case OP_DEFINE_GLOBAL:
+      return constantInstruction("OP_DEFINE_GLOBAL", chunk, 
+                                offset);
     case OP_GREATER:
       return simpleInstruction("OP_GREATER", offset);
     case OP_LESS:
@@ -61,6 +71,8 @@ int disassembleInstruction(Chunk *chunk, int offset) {
       return simpleInstruction("OP_NEGATE", offset);
     case OP_RETURN:  
       return simpleInstruction("OP_RETURN", offset);
+    case OP_PRINT:
+      return simpleInstruction("OP_PRINT", offset);
     default:
       printf("Unknown opcode %d\n", instruction);
       return offset + 1;

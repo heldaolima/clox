@@ -160,7 +160,6 @@ static Token number() {
     while (isDigit(peek())) advance();
   }
 
-  printf("will make number\n");
   return makeToken(TOKEN_NUMBER);
 }
 
