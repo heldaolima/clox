@@ -1,0 +1,5 @@
+var test = 232;
+{
+  var a  = 23;
+  print test + a;
+}
